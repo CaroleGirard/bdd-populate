@@ -35,7 +35,7 @@ const UserModel= mongoose.model ('users', UserSchema);
 /* GET home page. */
 router.get('/', async function(req, res, next) {
   var newUser= new UserModel ({
-    batch: batch_number,
+    batch: new mongoose.Types.ObjectId(),
     nom: "Werber",
     prenom: "Bernard"
   })
@@ -44,6 +44,7 @@ router.get('/', async function(req, res, next) {
     batch_number: 01
   })
   var user = await newUser.save();
+  var user = await newBatch.save();
   res.render('index', { title: 'Express' });
 });
 
