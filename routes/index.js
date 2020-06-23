@@ -34,17 +34,21 @@ const UserModel= mongoose.model ('users', UserSchema);
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
+ /* création new user
   var newUser= new UserModel ({
     batch: new mongoose.Types.ObjectId(),
-    nom: "Werber",
-    prenom: "Bernard"
+    nom: "Rice",
+    prenom: "Anne"
   })
   var newBatch= new BatchModel ({
-    city: "Paris",
-    batch_number: 01
+    city: "Louisiane",
+    batch_number: 02
   })
   var user = await newUser.save();
-  var user = await newBatch.save();
+  var user = await newBatch.save();*/
+  var user = await UserModel.find({nom: "Rice"}).populate('batch').exec();
+  console.log(user.nom);
+  console.log(user.batch.batch_number); 
   res.render('index', { title: 'Express' });
 });
 
